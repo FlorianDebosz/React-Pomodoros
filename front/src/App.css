@@ -5,6 +5,7 @@ body {
   color: #eabf9f;
   height: 100vh;
   font-family: "Roboto Mono", monospace;
+  overflow: hidden;
 }
 
 #root {
