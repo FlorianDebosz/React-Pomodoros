@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import soundBell from './sound/bell.mp3';
 
 export default function Pomodoro(){
-    const [minutes,setMinutes] = useState(0);
-    const [seconds,setSeconds] = useState(5);
+    const [minutes,setMinutes] = useState(25);
+    const [seconds,setSeconds] = useState(0);
     const [displayMessage, setDisplayMessage] = useState(false);
+    const bellAudio = new Audio(soundBell);
 
     useEffect(() => {
         let interval = setInterval(() => {
@@ -20,6 +22,7 @@ export default function Pomodoro(){
                     setMinutes(minutes);
                     setSeconds(seconds);
                     setDisplayMessage(!displayMessage);
+                    bellAudio.play();
                 }
             }else {
                 setSeconds(seconds - 1);
@@ -31,9 +34,9 @@ export default function Pomodoro(){
     const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
     return (
         <div className="pomodoro">
-            <div className="message">
-                {displayMessage &&<div>Break! New session starts in :</div>}
-            </div>
+            {displayMessage &&<div className="message">
+                <div>Break! New session starts in :</div>
+            </div>}
             <div className="timer">{timerMinutes}:{timerSeconds}</div>
         </div>
     )
