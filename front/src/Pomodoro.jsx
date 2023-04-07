@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import soundBell from './sound/bell.mp3';
+import { Icon } from '@iconify/react';
 
 export default function Pomodoro(){
     const [minutes,setMinutes] = useState(25);
@@ -38,6 +39,7 @@ export default function Pomodoro(){
                 <div>Break! New session starts in :</div>
             </div>}
             <div className="timer">{timerMinutes}:{timerSeconds}</div>
+            <Icon icon="bx:volume-mute" />
         </div>
     )
 }

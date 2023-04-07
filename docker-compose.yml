@@ -1,14 +1,19 @@
 version: "3.9"
 services:
-  react:
+  front:
     container_name: pomodoros-react
     build:
       context: ./front
       target: development
     volumes:
       - ./front:/app
-      - modules:/app/node_modules/
+      - modules:/app/node_modules
     ports:
       - "5173:5173"
 volumes:
   modules:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./front/node_modules
