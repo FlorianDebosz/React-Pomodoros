@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from "react";
-import soundBell from './sound/bell.mp3';
-import { Icon } from '@iconify/react';
+import React, { useState, useEffect, useContext } from 'react';
+import SoundContext from './SoundContext';
+import BellSound from './sound/bell.mp3';
 
-export default function Pomodoro(){
-    const [minutes,setMinutes] = useState(25);
-    const [seconds,setSeconds] = useState(0);
+function ClassicPomodoro(){
+    const [minutes,setMinutes] = useState(24);
+    const [seconds,setSeconds] = useState(59);
     const [displayMessage, setDisplayMessage] = useState(false);
-    const bellAudio = new Audio(soundBell);
 
+    const soundMute = useContext(SoundContext);
+    const audioBell = new Audio(BellSound);
+
+    useEffect(() => {
+        console.log('pomodoro', soundMute);
+    }, [soundMute]);
+    
     useEffect(() => {
         let interval = setInterval(() => {
             clearInterval(interval);
@@ -23,7 +29,9 @@ export default function Pomodoro(){
                     setMinutes(minutes);
                     setSeconds(seconds);
                     setDisplayMessage(!displayMessage);
-                    bellAudio.play();
+                    //verifier valeur 
+                    if(!soundMute)
+                        audioBell.play();  
                 }
             }else {
                 setSeconds(seconds - 1);
@@ -33,13 +41,15 @@ export default function Pomodoro(){
 
     const timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
     return (
         <div className="pomodoro">
             {displayMessage &&<div className="message">
                 <div>Break! New session starts in :</div>
             </div>}
             <div className="timer">{timerMinutes}:{timerSeconds}</div>
-            <Icon icon="bx:volume-mute" />
         </div>
     )
 }
+
+export default ClassicPomodoro;

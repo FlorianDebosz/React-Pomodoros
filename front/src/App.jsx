@@ -1,10 +1,24 @@
+import { useState } from 'react';
 import './App.css';
-import Pomodoro from './Pomodoro';
+import BottomBar from './BottomBar';
+import ClassicPomodoro from './ClassicPomodoro';
+import SoundContext from './SoundContext';
 
 function App() {
-    return <div className='App'>
-        <Pomodoro />
-    </div>
-}
+    const [soundMute, setSoundMute] = useState(true);
+  
+    const soundAuthorization = () => {
+      setSoundMute(prev => !prev);
+    }
 
-export default App;
+      return (
+        <SoundContext.Provider value={soundMute}>
+          <div className='app'>
+            <ClassicPomodoro className='pomodoro' soundMute={soundMute} />
+            <BottomBar soundMute={soundMute} soundAuthorization={soundAuthorization} />
+          </div>
+        </SoundContext.Provider>
+      );
+    }
+    
+    export default App;

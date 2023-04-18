@@ -6,29 +6,58 @@ body {
   height: 100vh;
   font-family: "Roboto Mono", monospace;
   overflow: hidden;
+  margin: 0;
 }
 
-#root {
-  height: 100%;
-}
+.app {
+  height: 100vh;
+  width: 100vw;
+  background-color: #1e212d;
 
-.App {
+
   display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .pomodoro {
-    display: flex;
-    font-size: 6em;
-    flex-direction: column;
-    align-items: center;
+  background-color: #1e212d;
+  flex: 2;
+  margin: auto;
+  display: flex;
+  font-size: 8vh;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .message {
-  font-size: 0.5em;
-  min-height: 1.3em;
-  margin-bottom: 0.5em;
+  display: flex;
+  text-align: center;
+}
+
+.icon-sound {
+  font-size: 4.5vh;
+  cursor: pointer;
+  padding: 0.7vh 0.6vw;
+}
+
+.soundButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+.bottomBar {
+  display: flex;
+  background-color: #1e212d;
+  padding-top: 0.4vh;
+  padding-bottom: 0.2vh;
+  padding-right: 0.3vw;
+  justify-content: flex-end;
+}
+
+.timer {
+  margin: 0 auto;
 }
